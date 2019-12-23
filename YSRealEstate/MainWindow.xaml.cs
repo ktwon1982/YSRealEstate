@@ -23,6 +23,10 @@ namespace YSRealEstate
         public MainWindow()
         {
             InitializeComponent();
+
+            MainModel vm = new MainModel();            
+            this.DataContext = vm;
+
         }
     }
 }

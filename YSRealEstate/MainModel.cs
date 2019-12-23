@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,24 @@ namespace YSRealEstate
     public class MainModel : Notifier
     {
         #region Input and output properties
+
+        public ObservableCollection<string> ComboItems { get; private set; }
+
+        // 콤보박스 아이템 변경시
+        private String selectedItem;
+        public String SelectedItem
+        {
+            get
+            {
+                return selectedItem;
+            }
+            set
+            {
+                selectedItem = value;
+                OnPropertyChanged("SelectedItem");
+            }
+        }
+
 
         private string searchInput;
 
@@ -66,6 +85,25 @@ namespace YSRealEstate
         {
             SelectedRealEstate = null;
             FoundRealEstate = factory.GetAllProducts();
+
+            ComboItems = new ObservableCollection<string>()
+            {
+                "접수일",
+                "평수",
+                "층수",
+                "매물구분",
+                "보증금",
+                "승강기",
+                "호이스트",
+                "층고",
+                "전력",
+                "주소",
+                "담당자",
+                "비고"
+            };
+
+            selectedItem = "비고";
+            OnPropertyChanged("SelectedItem");
         }
 
         private void OnSearchInputChanged()
@@ -74,7 +112,60 @@ namespace YSRealEstate
             // product is unselected
             SelectedRealEstate = null;
 
-            FoundRealEstate = factory.FindProducts(SearchInput);
+            if(selectedItem.Equals("접수일"))
+            {
+                FoundRealEstate = factory.FindDate(SearchInput);
+            }
+            else if(selectedItem.Equals("평수"))
+            {
+                FoundRealEstate = factory.FindSpacious(SearchInput);
+            }
+            else if (selectedItem.Equals("층수"))
+            {
+                FoundRealEstate = factory.FindFloorNumber(SearchInput);
+            }
+            else if (selectedItem.Equals("매물구분"))
+            {
+               FoundRealEstate = factory.FindEstateType(SearchInput);
+            }
+            else if (selectedItem.Equals("보증금"))
+            {
+                FoundRealEstate = factory.FindMaintenance(SearchInput);
+            }
+            else if (selectedItem.Equals("승강기"))
+            {
+                FoundRealEstate = factory.FindDeposit(SearchInput);
+
+            }
+            else if (selectedItem.Equals("호이스트"))
+            {
+                FoundRealEstate = factory.FindHoist(SearchInput);
+
+            }
+            else if (selectedItem.Equals("층고"))
+            {
+                FoundRealEstate = factory.FindFloorHeight(SearchInput);
+
+            }
+            else if (selectedItem.Equals("전력"))
+            {
+                FoundRealEstate = factory.FindPower(SearchInput);
+
+            }
+            else if (selectedItem.Equals("주소"))
+            {
+                FoundRealEstate = factory.FindAddress(SearchInput);
+
+            }
+            else if (selectedItem.Equals("담당자"))
+            {
+                FoundRealEstate = factory.FindMaintenance(SearchInput);
+
+            }
+            else
+            {
+                FoundRealEstate = factory.FindComment(SearchInput);
+            }            
         }
     }
 }

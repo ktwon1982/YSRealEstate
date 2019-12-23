@@ -1,12 +1,10 @@
 D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\bin\Debug\YSRealEstate.exe.config
 D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\bin\Debug\YSRealEstate.exe
 D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\bin\Debug\YSRealEstate.pdb
+D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\MainWindow.baml
 D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\MainWindow.g.cs
 D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\App.g.cs
-D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\YSRealEstate_MarkupCompile.cache
-D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\YSRealEstate_MarkupCompile.lref
-D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\MainWindow.baml
 D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\YSRealEstate.g.resources
 D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\YSRealEstate.Properties.Resources.resources
 D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\YSRealEstate.csproj.GenerateResource.Cache

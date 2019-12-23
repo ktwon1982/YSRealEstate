@@ -15,10 +15,76 @@ namespace YSRealEstate
             return realEstateList;
         }
 
-        public IEnumerable<RealEstate> FindProducts(string searchString)
+        public IEnumerable<RealEstate> FindDate(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.접수일.Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindSpacious(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.평수.ToString().Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindFloorNumber(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.층수.ToString().Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindEstateType(string searchString)
+        {      
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.매매구분.Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindDeposit(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.보증금.ToString().Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindElevator(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.승강기.ToString().Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindHoist(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.호이스트.ToString().Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindFloorHeight(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.층고.ToString().Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindPower(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.전력.ToString().Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindAddress(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.주소.Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindMaintenance(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.담담자연락처.Contains(searchString));
+        }
+
+        public IEnumerable<RealEstate> FindComment(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.비고.Contains(searchString));
         }
 
         #region In-memory data
@@ -98,20 +164,7 @@ namespace YSRealEstate
                         realEstate.접수일 = values[0]; //접수일
                         realEstate.평수 = Convert.ToInt16(values[1]);//평수
                         realEstate.층수 = Convert.ToInt16(values[2]);//층수
-
-                        if(values[3].Equals("1"))
-                        {
-                            realEstate.매매구분 = "매매";
-                        }
-                        else if (values[3].Equals("2"))
-                        {
-                            realEstate.매매구분 = "월세";
-                        }
-                        else
-                        {
-                            realEstate.매매구분 = "전세";
-                        }
-                        
+                        realEstate.매매구분 = values[3];//매매구분    
                         realEstate.보증금 = Convert.ToInt16(values[4]);//보증금
                         realEstate.승강기 = Convert.ToInt16(values[5]);//승강기
                         realEstate.호이스트 = Convert.ToInt16(values[6]); //호이스트

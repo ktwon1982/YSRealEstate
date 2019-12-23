@@ -1,28 +1,23 @@
 ﻿<Page x:Class="YSRealEstate.MainWindow"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:YSRealEstate"
-      xmlns:vm="clr-namespace:YSRealEstate"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="1000"      
+      d:DesignHeight="300" d:DesignWidth="600"      
       Title="YS RealEstate"      
-      >
-    <Page.DataContext>
-        <vm:MainModel/>
-    </Page.DataContext>
+      >  
 
     <Grid>
         <TextBox Text="{Binding SearchInput, 
                  Mode=TwoWay, 
                  UpdateSourceTrigger=PropertyChanged}"
                  Height="23"
-                 Margin="59,10,113.222,0"
+                 Margin="242,11,191,0"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Background="#99FFFFFF" />
-        
+
         <TextBlock x:Name="textBlock"
                    HorizontalAlignment="Left"
                    Margin="10,11,0,0"
@@ -39,7 +34,7 @@
                 Width="162"
                 Background="#66FFFFFF">
             <StackPanel Margin="10">
-                <TextBlock Text="Product details"
+                <TextBlock Text="매물 상세"
                         FontWeight="Bold"
                         FontSize="16"
                         HorizontalAlignment="Center"
@@ -56,7 +51,11 @@
                 <TextBox Text="{Binding Reference, Mode=TwoWay}" />
             </StackPanel>
         </Border>
-
-
+        <ComboBox HorizontalAlignment="Left" 
+                  Height="23" Margin="70,11,0,0" 
+                  VerticalAlignment="Top" Width="152"
+                  ItemsSource="{Binding ComboItems}"                  
+                  SelectedItem="{Binding SelectedItem}" RenderTransformOrigin="0.884,0.078"
+                  />
     </Grid>
 </Page>
