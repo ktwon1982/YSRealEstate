@@ -1,0 +1,296 @@
+﻿<Window x:Class="YSRealEstate.ViewListDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:YSRealEstate"
+        mc:Ignorable="d"
+        Title="ViewListDetail" Height="650" Width="500">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <StackPanel Margin="10">
+                <TextBlock Text="{Binding EstateNumber, Mode=TwoWay}"
+                        FontWeight="Bold"
+                        FontSize="20"
+                        HorizontalAlignment="Center"
+                        Margin="10" />
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid OpacityMask="Black" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <TextBlock Text="접수일 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+
+                </Grid>
+
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <TextBox 
+                              Text="{Binding ReceiptDate, Mode=TwoWay}" 
+                               
+                               FontSize="13"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                               Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <TextBlock Text="평수 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <TextBox Text="{Binding Spacious, Mode=TwoWay}" 
+                              FontSize="14"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                              Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <TextBlock Text="층수 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <TextBox Text="{Binding FloorNumber, Mode=TwoWay}" 
+                               FontSize="14"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                              Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="3" Grid.Column="0">
+                    <TextBlock Text="매물구분 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="3" Grid.Column="1">
+                    <TextBox Text="{Binding EstateType, Mode=TwoWay}" 
+                               FontSize="14"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                              Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="4" Grid.Column="0">
+                    <TextBlock Text="보증금 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="4" Grid.Column="1">
+                    <TextBox Text="{Binding Deposit, Mode=TwoWay}" 
+                              FontSize="14"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                              Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="5" Grid.Column="0">
+                    <TextBlock Text="승강기 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="5" Grid.Column="1">
+                    <TextBox Text="{Binding Elevator, Mode=TwoWay}" 
+                               FontSize="14"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                              Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="6" Grid.Column="0">
+                    <TextBlock Text="호이스트 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="6" Grid.Column="1">
+                    <TextBox Text="{Binding Hoist, Mode=TwoWay}" 
+                              FontSize="14"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                              Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="7" Grid.Column="0">
+                    <TextBlock Text="층고 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="7" Grid.Column="1">
+                    <TextBox Text="{Binding FloorHeight, Mode=TwoWay}" 
+                               FontSize="14"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                              Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="8" Grid.Column="0">
+                    <TextBlock Text="전력 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="8" Grid.Column="1">
+                    <TextBox Text="{Binding Power, Mode=TwoWay}" 
+                               FontSize="14"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                              Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="9" Grid.Column="0">
+                    <TextBlock Text="주소 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="9" Grid.Column="1">
+                    <TextBox Text="{Binding Address, Mode=TwoWay}" 
+                               FontSize="14"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                              Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="10" Grid.Column="0">
+                    <TextBlock Text="담당자 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="10" Grid.Column="1">
+                    <TextBox Text="{Binding Maintenance, Mode=TwoWay}" 
+                               FontSize="14"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Center"
+                              Width="200"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="11" Grid.Column="0">
+                    <TextBlock Text="코멘트 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Top"
+                               />
+                </Grid>
+
+                <Grid Grid.Row="11" Grid.Column="1">
+                    <TextBox Text="{Binding Comment, Mode=TwoWay}"                                
+                               FontSize="12"
+                               HorizontalAlignment ="Left"
+                               VerticalAlignment="Top"
+                               Width="202"
+                              Height="100"
+                             TextWrapping="Wrap" 
+                               />
+                </Grid>
+                <Grid Grid.Row="12" Grid.Column="0">
+                    <TextBlock Text="이미지 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Top"
+                               />
+                </Grid >
+                
+                <Image Grid.Row="12" Grid.Column="1"                                                   
+                           HorizontalAlignment="Left" 
+                           Height="120" 
+                           Margin="5.2,5,-0.4,-0.4"
+                           VerticalAlignment="Top" 
+                           Width="315"
+                           Source="{Binding ImageSource, Mode=TwoWay, 
+                                UpdateSourceTrigger=PropertyChanged}"                           
+                           />
+            </Grid>
+        </Grid>
+    </Grid>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseDoubleClick" SourceName="image">
+            <i:InvokeCommandAction Command="{Binding DoubleClickCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+</Window>

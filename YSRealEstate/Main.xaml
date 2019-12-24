@@ -1,0 +1,50 @@
+﻿<Window x:Class="YSRealEstate.Mainxaml"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:YSRealEstate"
+        mc:Ignorable="d"
+        Title="Mainxaml" Height="500" Width="800">
+
+    <Grid>
+                
+        <TextBox Text="{Binding SearchInput, 
+                 Mode=TwoWay, 
+                 UpdateSourceTrigger=PropertyChanged}"
+                 Height="23"
+                 Margin="242,22,9.6,0"
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top"
+                 Background="#99FFFFFF" />
+
+        <TextBlock x:Name="textBlock"
+                   HorizontalAlignment="Left"
+                   Margin="10,22,0,0"
+                   TextWrapping="Wrap"
+                   Text="Search:"
+                   VerticalAlignment="Top" />
+
+        <DataGrid x:Name="DataGrid"
+                  ItemsSource="{Binding FoundRealEstate}"
+                  SelectedItem="{Binding SelectedRealEstate, Mode=TwoWay}"
+                  Margin="10,60,9.6,10.4" IsReadOnly="True">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding DoubleClickCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>   
+
+        </DataGrid>
+
+
+        <ComboBox HorizontalAlignment="Left" 
+                  Height="23" Margin="70,22,0,0" 
+                  VerticalAlignment="Top" Width="152"
+                  ItemsSource="{Binding ComboItems}"                  
+                  SelectedItem="{Binding SelectedItem}" RenderTransformOrigin="0.884,0.078"
+                  />
+    </Grid>
+</Window>

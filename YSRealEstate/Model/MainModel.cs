@@ -4,12 +4,27 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using YSRealEstate.Command;
 
-namespace YSRealEstate
+namespace YSRealEstate.Model
 {
     public class MainModel : Notifier
     {
         #region Input and output properties
+
+        private EventCommand doubleClickCommand;
+        public ICommand DoubleClickCommand
+        {
+            get
+            {
+                if (doubleClickCommand == null)
+                {
+                    doubleClickCommand = new EventCommand(GrideviewDoubleClick, obj => true);
+                }
+                return doubleClickCommand;
+            }
+        }
 
         public ObservableCollection<string> ComboItems { get; private set; }
 
@@ -55,9 +70,9 @@ namespace YSRealEstate
         }
 
 
-        private Product selectedRealEstate;
+        private RealEstate selectedRealEstate;
 
-        public Product SelectedRealEstate
+        public RealEstate SelectedRealEstate
         {
             get { return selectedRealEstate; }
             set
@@ -112,11 +127,11 @@ namespace YSRealEstate
             // product is unselected
             SelectedRealEstate = null;
 
-            if(selectedItem.Equals("접수일"))
+            if (selectedItem.Equals("접수일"))
             {
                 FoundRealEstate = factory.FindDate(SearchInput);
             }
-            else if(selectedItem.Equals("평수"))
+            else if (selectedItem.Equals("평수"))
             {
                 FoundRealEstate = factory.FindSpacious(SearchInput);
             }
@@ -126,15 +141,15 @@ namespace YSRealEstate
             }
             else if (selectedItem.Equals("매물구분"))
             {
-               FoundRealEstate = factory.FindEstateType(SearchInput);
+                FoundRealEstate = factory.FindEstateType(SearchInput);
             }
             else if (selectedItem.Equals("보증금"))
             {
-                FoundRealEstate = factory.FindMaintenance(SearchInput);
+                FoundRealEstate = factory.FindDeposit(SearchInput);
             }
             else if (selectedItem.Equals("승강기"))
             {
-                FoundRealEstate = factory.FindDeposit(SearchInput);
+                FoundRealEstate = factory.FindElevator(SearchInput);
 
             }
             else if (selectedItem.Equals("호이스트"))
@@ -165,7 +180,13 @@ namespace YSRealEstate
             else
             {
                 FoundRealEstate = factory.FindComment(SearchInput);
-            }            
+            }
+        }
+
+        private void GrideviewDoubleClick(object obj)
+        {
+            ViewListDetail VLD = new ViewListDetail(selectedRealEstate);
+            VLD.ShowDialog();
         }
     }
 }

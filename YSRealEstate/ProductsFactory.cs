@@ -106,7 +106,7 @@ namespace YSRealEstate
 
             ReadCSV();
         }
-
+#if false
         static Random r = new Random(DateTime.Now.Millisecond);
         static Product generateRandomProduct()
         {
@@ -124,7 +124,7 @@ namespace YSRealEstate
         {
             return array[r.Next(array.Length)];
         }
-        
+#endif
         
         static void ReadCSV()
         {
@@ -135,9 +135,7 @@ namespace YSRealEstate
                 using (StreamReader sr = new StreamReader(fs, Encoding.UTF8, false))
                 {
                     string strLineValue = null;
-                    string[] keys = null;
                     string[] values = null;
-                    string[] date = null;
 
                     while ((strLineValue = sr.ReadLine()) != null)
                     {
@@ -154,25 +152,26 @@ namespace YSRealEstate
 
                         values = strLineValue.Split(',');
 
-                        
+
                         //date = values[0].Split('-');
 
                         //DateTime dt = new DateTime(Convert.ToInt16(date[0]), Convert.ToInt16(date[1]), Convert.ToInt16(date[2]));
 
                         //string receiptDate = values[0].ToString("yyy-MM-dd");
 
-                        realEstate.접수일 = values[0]; //접수일
-                        realEstate.평수 = Convert.ToInt16(values[1]);//평수
-                        realEstate.층수 = Convert.ToInt16(values[2]);//층수
-                        realEstate.매매구분 = values[3];//매매구분    
-                        realEstate.보증금 = Convert.ToInt16(values[4]);//보증금
-                        realEstate.승강기 = Convert.ToInt16(values[5]);//승강기
-                        realEstate.호이스트 = Convert.ToInt16(values[6]); //호이스트
-                        realEstate.층고 = Convert.ToInt16(values[7]);//층고
-                        realEstate.전력 = Convert.ToInt16(values[8]);//전력
-                        realEstate.주소 = values[9];//주소
-                        realEstate.담담자연락처 = values[10];//담당자
-                        realEstate.비고 = values[11];//비고
+                        realEstate.번호 = values[0];
+                        realEstate.접수일 = values[1]; //접수일
+                        realEstate.평수 = Convert.ToInt16(values[2]);//평수
+                        realEstate.층수 = Convert.ToInt16(values[3]);//층수                        
+                        realEstate.매매구분 = values[4];//매매구분    
+                        realEstate.보증금 = Convert.ToInt16(values[5]);//보증금
+                        realEstate.승강기 = Convert.ToInt16(values[6]);//승강기
+                        realEstate.호이스트 = Convert.ToInt16(values[7]); //호이스트
+                        realEstate.층고 = Convert.ToInt16(values[8]);//층고
+                        realEstate.전력 = Convert.ToInt16(values[9]);//전력
+                        realEstate.주소 = values[10];//주소
+                        realEstate.담담자연락처 = values[11];//담당자
+                        realEstate.비고 = values[12];//비고
 
                         realEstateList.Add(realEstate);
                     }
@@ -181,7 +180,7 @@ namespace YSRealEstate
         }
 
 
-        #endregion
+#endregion
     }
     
     
@@ -189,6 +188,19 @@ namespace YSRealEstate
 
     public class RealEstate : Notifier
     {
+        //접수일
+        private string number;
+
+        public string 번호
+        {
+            get { return number; }
+            set
+            {
+                number = value;
+                OnPropertyChanged("Number");
+            }
+        }
+
         //접수일
         private string receiptDate;
 
