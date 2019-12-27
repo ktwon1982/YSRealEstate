@@ -26,6 +26,8 @@ namespace YSRealEstate.Model
             }
         }
 
+        public CommonCommand RegistCommand { get; private set; }
+
         public ObservableCollection<string> ComboItems { get; private set; }
 
         // 콤보박스 아이템 변경시
@@ -93,7 +95,15 @@ namespace YSRealEstate.Model
             // list is empty.
             FoundRealEstate = Enumerable.Empty<RealEstate>();
 
+            RegistCommand = new CommonCommand(RegistCMD);
+
             OnLoadData();
+        }
+
+        private void RegistCMD(object obj)
+        {
+            ViewRegist VR = new ViewRegist();
+            VR.ShowDialog();
         }
 
         private void OnLoadData()
@@ -187,6 +197,11 @@ namespace YSRealEstate.Model
         {
             ViewListDetail VLD = new ViewListDetail(selectedRealEstate);
             VLD.ShowDialog();
+        }
+
+        private void RegistClick(object obj)
+        {
+            int a = 0;
         }
     }
 }

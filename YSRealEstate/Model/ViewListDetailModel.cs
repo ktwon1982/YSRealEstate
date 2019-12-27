@@ -27,7 +27,7 @@ namespace YSRealEstate.Model
 
         private void KeyDown(object obj)
         {
-            int a = 0;
+
         }
 
         private string estateNumber;

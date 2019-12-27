@@ -14,7 +14,7 @@
                  Mode=TwoWay, 
                  UpdateSourceTrigger=PropertyChanged}"
                  Height="23"
-                 Margin="242,22,9.6,0"
+                 Margin="242,22,193.6,0"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Background="#99FFFFFF" />
@@ -46,5 +46,21 @@
                   ItemsSource="{Binding ComboItems}"                  
                   SelectedItem="{Binding SelectedItem}" RenderTransformOrigin="0.884,0.078"
                   />
+
+        <Button x:Name="button" 
+                Content="물건등록" 
+                HorizontalAlignment="Left" 
+                Margin="618,22,0,0" VerticalAlignment="Top" 
+                Height="23"
+                Width="75"
+                Command="{Binding RegistCommand}">            
+        </Button>
+
+        <Button x:Name="button_Copy" 
+            Content="삭제" 
+            HorizontalAlignment="Left" 
+            Margin="698,22,0,0" VerticalAlignment="Top" 
+            Height="23"
+            Width="75"/>
     </Grid>
 </Window>

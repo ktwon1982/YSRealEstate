@@ -64,8 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\CommonCommand.cs" />
     <Compile Include="Model\ImageMgr.cs" />
     <Compile Include="Model\ViewListDetailModel.cs" />
+    <Compile Include="Model\ViewRegistModel.cs" />
     <Compile Include="ViewListDetail.xaml.cs">
       <DependentUpon>ViewListDetail.xaml</DependentUpon>
     </Compile>
@@ -75,11 +77,18 @@
     </Compile>
     <Compile Include="Command\EventCommand.cs" />
     <Compile Include="Model\MainModel.cs" />
+    <Compile Include="ViewRegist.xaml.cs">
+      <DependentUpon>ViewRegist.xaml</DependentUpon>
+    </Compile>
     <Page Include="Main.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewListDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewRegist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
