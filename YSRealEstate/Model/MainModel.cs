@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using YSRealEstate.Command;
+using YSRealEstate.DTO;
 
 namespace YSRealEstate.Model
 {
@@ -27,6 +29,7 @@ namespace YSRealEstate.Model
         }
 
         public CommonCommand RegistCommand { get; private set; }
+        public CommonCommand DelCommand { get; private set; }
 
         public ObservableCollection<string> ComboItems { get; private set; }
 
@@ -59,9 +62,9 @@ namespace YSRealEstate.Model
             }
         }
 
-        private IEnumerable<RealEstate> foundRealEstate;
+        private IEnumerable<RealEstateInfoDTO> foundRealEstate;
 
-        public IEnumerable<RealEstate> FoundRealEstate
+        public IEnumerable<RealEstateInfoDTO> FoundRealEstate
         {
             get { return foundRealEstate; }
             set
@@ -72,9 +75,9 @@ namespace YSRealEstate.Model
         }
 
 
-        private RealEstate selectedRealEstate;
+        private RealEstateInfoDTO selectedRealEstate;
 
-        public RealEstate SelectedRealEstate
+        public RealEstateInfoDTO SelectedRealEstate
         {
             get { return selectedRealEstate; }
             set
@@ -87,33 +90,24 @@ namespace YSRealEstate.Model
         #endregion
 
         RealEstateFactory factory = new RealEstateFactory();
-        RealEstate realEstate = new RealEstate();
+        //RealEstate realEstate = new RealEstate();
+        RealEstateInfoDTO realEstateInfoDTO;
 
         public MainModel()
         {
+            realEstateInfoDTO = new RealEstateInfoDTO();
             // Optional: we're just making sure the
             // list is empty.
-            FoundRealEstate = Enumerable.Empty<RealEstate>();
+            FoundRealEstate = Enumerable.Empty<RealEstateInfoDTO>();
 
             RegistCommand = new CommonCommand(RegistCMD);
-
-            OnLoadData();
-        }
-
-        private void RegistCMD(object obj)
-        {
-            ViewRegist VR = new ViewRegist();
-            VR.ShowDialog();
-        }
-
-        private void OnLoadData()
-        {
-            SelectedRealEstate = null;
-            FoundRealEstate = factory.GetAllProducts();
+            DelCommand = new CommonCommand(DelCMD);
 
             ComboItems = new ObservableCollection<string>()
             {
                 "접수일",
+                "계약체결일",
+                "계약종료일",
                 "평수",
                 "층수",
                 "매물구분",
@@ -129,6 +123,68 @@ namespace YSRealEstate.Model
 
             selectedItem = "비고";
             OnPropertyChanged("SelectedItem");
+
+            OnLoadData();
+        }
+
+        private void RegistCMD(object obj)
+        {
+            ViewRegist VR = new ViewRegist(realEstateInfoDTO, factory);
+            VR.ShowDialog();
+            if (VR.DialogResult == true)
+            {
+                //CSV 
+                factory.ReadCSV();
+
+                OnLoadData();
+
+                searchInput = "";
+                base.OnPropertyChanged("SearchInput");
+                OnSearchInputChanged();
+            }
+        }
+
+        private void DelCMD(object obj)
+        {
+            int i = 0;
+
+            string delNum = selectedRealEstate.번호;
+
+            //foundRealEstate.ElementAt(4);
+
+            foreach (var list in foundRealEstate)
+            {                
+                string selectList = list.번호;
+
+                if(delNum.Equals(selectList))
+                {
+                    factory.DelRealEstate(i);
+                    break;
+                }
+                i++;
+            }
+
+            //CSV 
+            factory.WriteCSV();
+
+            OnLoadData();
+
+            searchInput = "";
+            base.OnPropertyChanged("SearchInput");
+            OnSearchInputChanged();
+
+            //폴더 삭제
+            DirectoryInfo di = new DirectoryInfo("./image/"+ delNum);
+            di.Delete(true);
+
+        }
+
+        private void OnLoadData()
+        {
+            SelectedRealEstate = null;
+            foundRealEstate = factory.GetAllProducts();
+            OnPropertyChanged("FoundRealEstate");
+            
         }
 
         private void OnSearchInputChanged()
@@ -139,64 +195,86 @@ namespace YSRealEstate.Model
 
             if (selectedItem.Equals("접수일"))
             {
-                FoundRealEstate = factory.FindDate(SearchInput);
+                foundRealEstate = factory.FindDate(SearchInput);
+            }
+            if (selectedItem.Equals("계약체결일"))
+            {
+                foundRealEstate = factory.FindContractDate(SearchInput);
+            }
+            if (selectedItem.Equals("계약종료일"))
+            {
+                foundRealEstate = factory.FindContractEndDate(SearchInput);
             }
             else if (selectedItem.Equals("평수"))
             {
-                FoundRealEstate = factory.FindSpacious(SearchInput);
+                foundRealEstate = factory.FindSpacious(SearchInput);
             }
             else if (selectedItem.Equals("층수"))
             {
-                FoundRealEstate = factory.FindFloorNumber(SearchInput);
+                foundRealEstate = factory.FindFloorNumber(SearchInput);
             }
             else if (selectedItem.Equals("매물구분"))
             {
-                FoundRealEstate = factory.FindEstateType(SearchInput);
+                foundRealEstate = factory.FindEstateType(SearchInput);
             }
             else if (selectedItem.Equals("보증금"))
             {
-                FoundRealEstate = factory.FindDeposit(SearchInput);
+                foundRealEstate = factory.FindDeposit(SearchInput);
             }
             else if (selectedItem.Equals("승강기"))
             {
-                FoundRealEstate = factory.FindElevator(SearchInput);
+                foundRealEstate = factory.FindElevator(SearchInput);
 
             }
             else if (selectedItem.Equals("호이스트"))
             {
-                FoundRealEstate = factory.FindHoist(SearchInput);
+                foundRealEstate = factory.FindHoist(SearchInput);
 
             }
             else if (selectedItem.Equals("층고"))
             {
-                FoundRealEstate = factory.FindFloorHeight(SearchInput);
+                foundRealEstate = factory.FindFloorHeight(SearchInput);
 
             }
             else if (selectedItem.Equals("전력"))
             {
-                FoundRealEstate = factory.FindPower(SearchInput);
+                foundRealEstate = factory.FindPower(SearchInput);
 
             }
             else if (selectedItem.Equals("주소"))
             {
-                FoundRealEstate = factory.FindAddress(SearchInput);
+                foundRealEstate = factory.FindAddress(SearchInput);
 
             }
             else if (selectedItem.Equals("담당자"))
             {
-                FoundRealEstate = factory.FindMaintenance(SearchInput);
+                foundRealEstate = factory.FindMaintenance(SearchInput);
 
             }
             else
             {
-                FoundRealEstate = factory.FindComment(SearchInput);
+                foundRealEstate = factory.FindComment(SearchInput);
             }
+
+            OnPropertyChanged("FoundRealEstate");
         }
 
         private void GrideviewDoubleClick(object obj)
         {
-            ViewListDetail VLD = new ViewListDetail(selectedRealEstate);
+            ViewListDetail VLD = new ViewListDetail(selectedRealEstate, factory);
             VLD.ShowDialog();
+
+            if (VLD.DialogResult == true)
+            {
+                //CSV 
+                factory.ReadCSV();
+
+                OnLoadData();
+
+                searchInput = "";
+                base.OnPropertyChanged("SearchInput");
+                OnSearchInputChanged();
+            }
         }
 
         private void RegistClick(object obj)

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using YSRealEstate.Model;
+using YSRealEstate.DTO;
 
 namespace YSRealEstate
 {
@@ -20,12 +21,18 @@ namespace YSRealEstate
     /// </summary>
     public partial class ViewRegist : Window
     {
-        public ViewRegist()
+        public ViewRegist(RealEstateInfoDTO realEstateInfoDTO, RealEstateFactory factory)
         {
             InitializeComponent();
 
-            ViewRegistModel vm = new ViewRegistModel();
+            ViewRegistModel vm = new ViewRegistModel(realEstateInfoDTO, factory);
             this.DataContext = vm;
+
+            //window close
+            //vm.RequestClose += (s, e) => this.Close();
+
+            //dialogResult return OK
+            vm.RequestOK += (s, e) => this.DialogResult = true;
         }
     }
 }

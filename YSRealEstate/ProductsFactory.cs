@@ -4,84 +4,97 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YSRealEstate.DTO;
 
 namespace YSRealEstate
 {
     public class RealEstateFactory
     {
-        public IEnumerable<RealEstate> GetAllProducts()
+        public IEnumerable<RealEstateInfoDTO> GetAllProducts()
         {
             //return products;
             return realEstateList;
         }
 
-        public IEnumerable<RealEstate> FindDate(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindDate(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.접수일.Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindSpacious(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindContractDate(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.계약체결일.Contains(searchString));
+        }
+
+        public IEnumerable<RealEstateInfoDTO> FindContractEndDate(string searchString)
+        {
+            //return products.Where(p => p.Title.Contains(searchString));
+            return realEstateList.Where(p => p.계약종료일.Contains(searchString));
+        }
+
+        public IEnumerable<RealEstateInfoDTO> FindSpacious(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.평수.ToString().Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindFloorNumber(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindFloorNumber(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.층수.ToString().Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindEstateType(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindEstateType(string searchString)
         {      
             //return products.Where(p => p.Title.Contains(searchString));
-            return realEstateList.Where(p => p.매매구분.Contains(searchString));
+            return realEstateList.Where(p => p.매물구분.Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindDeposit(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindDeposit(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.보증금.ToString().Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindElevator(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindElevator(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.승강기.ToString().Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindHoist(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindHoist(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.호이스트.ToString().Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindFloorHeight(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindFloorHeight(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.층고.ToString().Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindPower(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindPower(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.전력.ToString().Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindAddress(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindAddress(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.주소.Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindMaintenance(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindMaintenance(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.담담자연락처.Contains(searchString));
         }
 
-        public IEnumerable<RealEstate> FindComment(string searchString)
+        public IEnumerable<RealEstateInfoDTO> FindComment(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
             return realEstateList.Where(p => p.비고.Contains(searchString));
@@ -92,9 +105,9 @@ namespace YSRealEstate
         // but we could as well fectch it from a database
         // or web service and it would yield the same result.
         //static IList<Product> products;
-        static IList<RealEstate> realEstateList;
+        IList<RealEstateInfoDTO> realEstateList;
         
-        static RealEstateFactory()
+        public RealEstateFactory()
         {
             //products = new List<Product>();
             //for (int i = 0; i < 100; i++)
@@ -102,7 +115,7 @@ namespace YSRealEstate
             //    products.Add(generateRandomProduct());
             //}
 
-            realEstateList = new List<RealEstate>();
+            realEstateList = new List<RealEstateInfoDTO>();
 
             ReadCSV();
         }
@@ -125,10 +138,70 @@ namespace YSRealEstate
             return array[r.Next(array.Length)];
         }
 #endif
-        
-        static void ReadCSV()
+
+        public void DelRealEstate(int index)
+        {
+            realEstateList.RemoveAt(index);
+        }
+
+        public void AddRealEstate(RealEstateInfoDTO realEstate)
+        {
+            realEstateList.Add(realEstate); 
+        }
+
+        public int GetNum()
+        {
+            return realEstateList.Count;
+        }
+
+        public void WriteCSV()
+        {
+            using (var w = new StreamWriter(@"RealEstateInfo.CSV"))
+            {
+                for (int i = 0 ; i < realEstateList.Count ; i++)
+                {
+                    if(i == 0)
+                    {
+                        var firstline = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", 
+                            "#물건번호", "접수일", "계약체결일", "계약종료일", "평수", "층수", "매물구분", "보증금", "승강기", "호이스트", "층고", "전력", "주소", "담당자", "비고");
+                        w.WriteLine(firstline);
+                        w.Flush();
+                    }
+
+                    var num = i + 1;
+                    var receiptDate = realEstateList[i].접수일;
+                    var contractDate = realEstateList[i].계약체결일;
+                    var contractEndDate = realEstateList[i].계약종료일;
+                    var spacious = realEstateList[i].평수;
+                    var floorNumber = realEstateList[i].층수;
+                    var estateType = realEstateList[i].매물구분;
+                    var deposit = realEstateList[i].보증금;
+                    var elevator = realEstateList[i].승강기;
+                    var hoist = realEstateList[i].호이스트;
+                    var floorHeight = realEstateList[i].층고;
+                    var power = realEstateList[i].전력;
+                    var address = realEstateList[i].주소;
+                    var maintenance = realEstateList[i].담담자연락처;
+                    var comment = realEstateList[i].비고;
+
+                    var line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", num, receiptDate, contractDate, contractEndDate, spacious, floorNumber, estateType, deposit, elevator, hoist, floorHeight, power, address, maintenance, comment);
+                    w.WriteLine(line);
+                    w.Flush();
+                }
+            }
+        }
+
+        public void ReadCSV()
         {
             string strFile = "RealEstateInfo.CSV";
+
+            FileInfo fileInfo = new FileInfo(@"./"+strFile);
+            if(fileInfo.Exists == false)
+            {
+                return;
+            }
+
+            realEstateList.Clear();
 
             using (FileStream fs = new FileStream(strFile, FileMode.Open))
             {
@@ -142,7 +215,7 @@ namespace YSRealEstate
                         // Must not be empty.
                         if (string.IsNullOrEmpty(strLineValue)) return;
 
-                        RealEstate realEstate = new RealEstate();
+                        RealEstateInfoDTO realEstate = new RealEstateInfoDTO();
 
                         if (strLineValue.Substring(0, 1).Equals("#"))
                         {                          
@@ -161,17 +234,19 @@ namespace YSRealEstate
 
                         realEstate.번호 = values[0];
                         realEstate.접수일 = values[1]; //접수일
-                        realEstate.평수 = Convert.ToInt16(values[2]);//평수
-                        realEstate.층수 = Convert.ToInt16(values[3]);//층수                        
-                        realEstate.매매구분 = values[4];//매매구분    
-                        realEstate.보증금 = Convert.ToInt16(values[5]);//보증금
-                        realEstate.승강기 = Convert.ToInt16(values[6]);//승강기
-                        realEstate.호이스트 = Convert.ToInt16(values[7]); //호이스트
-                        realEstate.층고 = Convert.ToInt16(values[8]);//층고
-                        realEstate.전력 = Convert.ToInt16(values[9]);//전력
-                        realEstate.주소 = values[10];//주소
-                        realEstate.담담자연락처 = values[11];//담당자
-                        realEstate.비고 = values[12];//비고
+                        realEstate.계약체결일 = values[2]; //접수일
+                        realEstate.계약종료일 = values[3]; //접수일
+                        realEstate.평수 = values[4];//평수
+                        realEstate.층수 = values[5];//층수                        
+                        realEstate.매물구분 = values[6];//매매구분    
+                        realEstate.보증금 = values[7];//보증금
+                        realEstate.승강기 = values[8];//승강기
+                        realEstate.호이스트 = values[9]; //호이스트
+                        realEstate.층고 = values[10];//층고
+                        realEstate.전력 = values[11];//전력
+                        realEstate.주소 = values[12];//주소
+                        realEstate.담담자연락처 = values[13];//담당자
+                        realEstate.비고 = values[14];//비고
 
                         realEstateList.Add(realEstate);
                     }

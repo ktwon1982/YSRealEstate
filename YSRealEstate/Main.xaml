@@ -6,10 +6,10 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:YSRealEstate"
         mc:Ignorable="d"
-        Title="Mainxaml" Height="500" Width="800">
+        Title="Mainxaml" Height="500" Width="1200">
 
     <Grid>
-                
+
         <TextBox Text="{Binding SearchInput, 
                  Mode=TwoWay, 
                  UpdateSourceTrigger=PropertyChanged}"
@@ -24,43 +24,47 @@
                    Margin="10,22,0,0"
                    TextWrapping="Wrap"
                    Text="Search:"
-                   VerticalAlignment="Top" />
+                   VerticalAlignment="Top" FontSize="16" />
 
         <DataGrid x:Name="DataGrid"
                   ItemsSource="{Binding FoundRealEstate}"
                   SelectedItem="{Binding SelectedRealEstate, Mode=TwoWay}"
-                  Margin="10,60,9.6,10.4" IsReadOnly="True">
+                  Margin="10,60,9.6,10.4" IsReadOnly="True" FontSize="16">
 
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDoubleClick">
-                            <i:InvokeCommandAction Command="{Binding DoubleClickCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>   
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding DoubleClickCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
 
         </DataGrid>
 
 
         <ComboBox HorizontalAlignment="Left" 
-                  Height="23" Margin="70,22,0,0" 
+                  Height="26" Margin="70,22,0,0" 
                   VerticalAlignment="Top" Width="152"
                   ItemsSource="{Binding ComboItems}"                  
-                  SelectedItem="{Binding SelectedItem}" RenderTransformOrigin="0.884,0.078"
+                  SelectedItem="{Binding SelectedItem}" RenderTransformOrigin="0.884,0.078" FontSize="16"
                   />
 
         <Button x:Name="button" 
                 Content="물건등록" 
-                HorizontalAlignment="Left" 
-                Margin="618,22,0,0" VerticalAlignment="Top" 
+                HorizontalAlignment="Right" 
+                Margin="0,22,100,0" 
+                VerticalAlignment="Top"
                 Height="23"
                 Width="75"
-                Command="{Binding RegistCommand}">            
+                Command="{Binding RegistCommand}" FontSize="16">
         </Button>
 
         <Button x:Name="button_Copy" 
             Content="삭제" 
-            HorizontalAlignment="Left" 
-            Margin="698,22,0,0" VerticalAlignment="Top" 
+             HorizontalAlignment="Right" 
+             Margin="0,22,10,0" 
+            VerticalAlignment="Top" 
             Height="23"
-            Width="75"/>
+            Width="75" 
+            Command="{Binding DelCommand}"    
+            FontSize="16"/>
     </Grid>
 </Window>

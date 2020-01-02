@@ -6,7 +6,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:YSRealEstate"
         mc:Ignorable="d"
-        Title="ViewListDetail" Height="650" Width="500">
+        Title="ViewListDetail" Height="800" Width="500">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -37,7 +37,10 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="4*"/>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="5*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -58,17 +61,61 @@
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="1">
-                    <TextBox 
-                              Text="{Binding ReceiptDate, Mode=TwoWay}" 
-                               
-                               FontSize="13"
-                               HorizontalAlignment ="Left"
-                               VerticalAlignment="Center"
-                               Width="200"
-                               />
+                    <DockPanel>
+                        <DatePicker                                
+                        HorizontalAlignment="Left"                        
+                        VerticalAlignment="Center" 
+                        Margin="0,0,0,0"                             
+                        SelectedDate="{Binding SelectedDate}"  
+                        IsEnabled="{Binding UdateEabled}"
+                        />
+                    </DockPanel>
                 </Grid>
 
                 <Grid Grid.Row="1" Grid.Column="0">
+                    <TextBlock Text="계약체결일 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <DockPanel>
+                        <DatePicker                                
+                        HorizontalAlignment="Left"                        
+                        VerticalAlignment="Center" 
+                        Margin="0,0,0,0"                             
+                        SelectedDate="{Binding ContractSelectedDate}"  
+                        IsEnabled="{Binding UdateEabled}"
+                        />
+                    </DockPanel>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <TextBlock Text="계약종료일 : " 
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Center"
+                               />
+
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <DockPanel>
+                        <DatePicker                                
+                        HorizontalAlignment="Left"                        
+                        VerticalAlignment="Center" 
+                        Margin="0,0,0,0"                             
+                        SelectedDate="{Binding ContractEndSelectedDate}"  
+                        IsEnabled="{Binding UdateEabled}"
+                        />
+                    </DockPanel>
+                </Grid>
+                <Grid Grid.Row="3" Grid.Column="0">
                     <TextBlock Text="평수 : " 
                                FontWeight="Bold"
                                FontSize="16"
@@ -77,16 +124,17 @@
                                />
                 </Grid>
 
-                <Grid Grid.Row="1" Grid.Column="1">
+                <Grid Grid.Row="3" Grid.Column="1">
                     <TextBox Text="{Binding Spacious, Mode=TwoWay}" 
                               FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="2" Grid.Column="0">
+                <Grid Grid.Row="4" Grid.Column="0">
                     <TextBlock Text="층수 : " 
                                FontWeight="Bold"
                                FontSize="16"
@@ -95,16 +143,17 @@
                                />
                 </Grid>
 
-                <Grid Grid.Row="2" Grid.Column="1">
+                <Grid Grid.Row="4" Grid.Column="1">
                     <TextBox Text="{Binding FloorNumber, Mode=TwoWay}" 
                                FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="3" Grid.Column="0">
+                <Grid Grid.Row="5" Grid.Column="0">
                     <TextBlock Text="매물구분 : " 
                                FontWeight="Bold"
                                FontSize="16"
@@ -113,16 +162,17 @@
                                />
                 </Grid>
 
-                <Grid Grid.Row="3" Grid.Column="1">
+                <Grid Grid.Row="5" Grid.Column="1">
                     <TextBox Text="{Binding EstateType, Mode=TwoWay}" 
                                FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="4" Grid.Column="0">
+                <Grid Grid.Row="6" Grid.Column="0">
                     <TextBlock Text="보증금 : " 
                                FontWeight="Bold"
                                FontSize="16"
@@ -131,16 +181,17 @@
                                />
                 </Grid>
 
-                <Grid Grid.Row="4" Grid.Column="1">
+                <Grid Grid.Row="6" Grid.Column="1">
                     <TextBox Text="{Binding Deposit, Mode=TwoWay}" 
                               FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="5" Grid.Column="0">
+                <Grid Grid.Row="7" Grid.Column="0">
                     <TextBlock Text="승강기 : " 
                                FontWeight="Bold"
                                FontSize="16"
@@ -149,34 +200,37 @@
                                />
                 </Grid>
 
-                <Grid Grid.Row="5" Grid.Column="1">
+                <Grid Grid.Row="7" Grid.Column="1">
                     <TextBox Text="{Binding Elevator, Mode=TwoWay}" 
                                FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="6" Grid.Column="0">
+                <Grid Grid.Row="8" Grid.Column="0">
                     <TextBlock Text="호이스트 : " 
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
                                VerticalAlignment="Center"
+                               IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="6" Grid.Column="1">
+                <Grid Grid.Row="8" Grid.Column="1">
                     <TextBox Text="{Binding Hoist, Mode=TwoWay}" 
                               FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="7" Grid.Column="0">
+                <Grid Grid.Row="9" Grid.Column="0">
                     <TextBlock Text="층고 : " 
                                FontWeight="Bold"
                                FontSize="16"
@@ -185,16 +239,17 @@
                                />
                 </Grid>
 
-                <Grid Grid.Row="7" Grid.Column="1">
+                <Grid Grid.Row="9" Grid.Column="1">
                     <TextBox Text="{Binding FloorHeight, Mode=TwoWay}" 
                                FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="8" Grid.Column="0">
+                <Grid Grid.Row="10" Grid.Column="0">
                     <TextBlock Text="전력 : " 
                                FontWeight="Bold"
                                FontSize="16"
@@ -203,16 +258,17 @@
                                />
                 </Grid>
 
-                <Grid Grid.Row="8" Grid.Column="1">
+                <Grid Grid.Row="10" Grid.Column="1">
                     <TextBox Text="{Binding Power, Mode=TwoWay}" 
                                FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="9" Grid.Column="0">
+                <Grid Grid.Row="11" Grid.Column="0">
                     <TextBlock Text="주소 : " 
                                FontWeight="Bold"
                                FontSize="16"
@@ -221,16 +277,17 @@
                                />
                 </Grid>
 
-                <Grid Grid.Row="9" Grid.Column="1">
+                <Grid Grid.Row="11" Grid.Column="1">
                     <TextBox Text="{Binding Address, Mode=TwoWay}" 
                                FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="10" Grid.Column="0">
+                <Grid Grid.Row="12" Grid.Column="0">
                     <TextBlock Text="담당자 : " 
                                FontWeight="Bold"
                                FontSize="16"
@@ -239,16 +296,17 @@
                                />
                 </Grid>
 
-                <Grid Grid.Row="10" Grid.Column="1">
+                <Grid Grid.Row="12" Grid.Column="1">
                     <TextBox Text="{Binding Maintenance, Mode=TwoWay}" 
                                FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
 
-                <Grid Grid.Row="11" Grid.Column="0">
+                <Grid Grid.Row="13" Grid.Column="0">
                     <TextBlock Text="코멘트 : " 
                                FontWeight="Bold"
                                FontSize="16"
@@ -257,7 +315,7 @@
                                />
                 </Grid>
 
-                <Grid Grid.Row="11" Grid.Column="1">
+                <Grid Grid.Row="13" Grid.Column="1">
                     <TextBox Text="{Binding Comment, Mode=TwoWay}"                                
                                FontSize="12"
                                HorizontalAlignment ="Left"
@@ -265,9 +323,10 @@
                                Width="202"
                               Height="100"
                              TextWrapping="Wrap" 
+                             IsEnabled="{Binding UdateEabled}"
                                />
                 </Grid>
-                <Grid Grid.Row="12" Grid.Column="0">
+                <Grid Grid.Row="14" Grid.Column="0">
                     <TextBlock 
                                Text="이미지 : " 
                                FontWeight="Bold"
@@ -277,21 +336,78 @@
                                />
                 </Grid >
 
-                <Image Grid.Row="12" Grid.Column="1"                                                   
+                <Grid Grid.Row="15" Grid.Column="0">
+                    <TextBlock 
+                               Text="{Binding NowImage, Mode=TwoWay, 
+                                UpdateSourceTrigger=PropertyChanged}"
+                        
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Top"
+                        IsEnabled="{Binding UdateEabled}"
+                               />
+                </Grid >
+
+                <Button Grid.Row="14" Grid.Column="1"
+               
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left" 
+                Width="100"
+                Command="{Binding AddImageCommand}"
+                IsEnabled="{Binding UdateEabled}"
+                >이미지추가</Button>
+
+                <Button Grid.Row="14" Grid.Column="1"               
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left" 
+                Width="100"
+              
+                Command="{Binding NextImageCommand}" Margin="105,0,0,4"
+                >>>다음 이미지</Button>
+
+                <Button Grid.Row="14" Grid.Column="1"               
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left" 
+                Width="100"
+                Command="{Binding DelImageCommand}" Margin="210,3,0,4"
+                IsEnabled="{Binding UdateEabled}"
+                >이미지 삭제</Button>
+
+                <Image Grid.Row="15" Grid.Column="1"                                                   
                            HorizontalAlignment="Left" 
                            Height="120" 
-                           Margin="5.2,5,-0.4,-0.4"
+                           Margin="5.2,5,-0.4,-0.4"                       
                            VerticalAlignment="Top" 
                            Width="315"
                            Source="{Binding ImageSource, Mode=TwoWay, 
-                                UpdateSourceTrigger=PropertyChanged}"                           
-                           >
+                                UpdateSourceTrigger=PropertyChanged}">
+
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding DoubleClickCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Image>
+                <Button Grid.Row="16" Grid.Column="1"
+               
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left" 
+                Width="100"
+                Height="25" 
+                Command="{Binding RealEstateUpdateCommand}"
+                IsEnabled="{Binding  UpdatebtnEabled}"
+                >수정</Button>
+
+                <Button Grid.Row="16" Grid.Column="1"
+               
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left" 
+                Width="100"
+                Height="24" 
+                Command="{Binding RealEstateUpdateOKCommand}" Margin="105,2,0,0"
+                IsEnabled="{Binding  OKEabled}"
+                >완료</Button>
             </Grid>
         </Grid>
     </Grid>

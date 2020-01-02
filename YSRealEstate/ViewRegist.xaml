@@ -59,14 +59,14 @@
                 </Grid>
 
                 <Grid Grid.Row="0" Grid.Column="1">
-                    <TextBox 
-                              Text="{Binding ReceiptDate, Mode=TwoWay}" 
-                               
-                               FontSize="13"
-                               HorizontalAlignment ="Left"
-                               VerticalAlignment="Center"
-                               Width="200"
-                               />
+                    <DockPanel>
+                        <DatePicker                                
+                        HorizontalAlignment="Left"                        
+                        VerticalAlignment="Center" 
+                        Margin="0,0,0,0"                             
+                        SelectedDate="{Binding SelectedDate}"  
+                        />
+                    </DockPanel>
                 </Grid>
 
                 <Grid Grid.Row="1" Grid.Column="0">
@@ -278,14 +278,41 @@
                                />
                 </Grid >
 
+                <Grid Grid.Row="13" Grid.Column="0">
+                    <TextBlock 
+                               Text="{Binding NowImage, Mode=TwoWay, 
+                                UpdateSourceTrigger=PropertyChanged}"
+                        
+                               FontWeight="Bold"
+                               FontSize="16"
+                               HorizontalAlignment ="Right"
+                               VerticalAlignment="Top"
+                               />
+                </Grid >
+
+
                 <Button Grid.Row="12" Grid.Column="1"
                
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Left" 
                 Width="100"
-                Height="25" 
                 Command="{Binding AddImageCommand}"
                 >이미지추가</Button>
+
+                <Button Grid.Row="12" Grid.Column="1"               
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left" 
+                Width="100"
+              
+                Command="{Binding NextImageCommand}" Margin="105,0,0,4"
+                >>>다음 이미지</Button>
+
+                <Button Grid.Row="12" Grid.Column="1"               
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Left" 
+                Width="100"
+                Command="{Binding DelImageCommand}" Margin="210,3,0,4"
+                >이미지 삭제</Button>
 
                 <Image Grid.Row="13" Grid.Column="1"                                                   
                            HorizontalAlignment="Left" 
@@ -295,7 +322,7 @@
                            Width="315"
                            Source="{Binding ImageSource, Mode=TwoWay, 
                                 UpdateSourceTrigger=PropertyChanged}">
-                    
+
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonDown">
                             <i:InvokeCommandAction Command="{Binding DoubleClickCommand}"/>
