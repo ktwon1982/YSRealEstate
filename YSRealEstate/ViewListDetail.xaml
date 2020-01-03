@@ -323,7 +323,9 @@
                                Width="202"
                               Height="100"
                              TextWrapping="Wrap" 
+                             IsManipulationEnabled="true"
                              IsEnabled="{Binding UdateEabled}"
+                             AcceptsReturn="True"
                                />
                 </Grid>
                 <Grid Grid.Row="14" Grid.Column="0">

@@ -182,7 +182,11 @@ namespace YSRealEstate
                     var power = realEstateList[i].전력;
                     var address = realEstateList[i].주소;
                     var maintenance = realEstateList[i].담담자연락처;
-                    var comment = realEstateList[i].비고;
+
+                    string replace = realEstateList[i].비고.Replace("\r\n", ":");
+                    
+                    //var comment = realEstateList[i].비고;
+                    var comment = replace;
 
                     var line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", num, receiptDate, contractDate, contractEndDate, spacious, floorNumber, estateType, deposit, elevator, hoist, floorHeight, power, address, maintenance, comment);
                     w.WriteLine(line);
@@ -224,10 +228,7 @@ namespace YSRealEstate
                         }
 
                         values = strLineValue.Split(',');
-
-
-                        //date = values[0].Split('-');
-
+                        
                         //DateTime dt = new DateTime(Convert.ToInt16(date[0]), Convert.ToInt16(date[1]), Convert.ToInt16(date[2]));
 
                         //string receiptDate = values[0].ToString("yyy-MM-dd");
@@ -246,7 +247,7 @@ namespace YSRealEstate
                         realEstate.전력 = values[11];//전력
                         realEstate.주소 = values[12];//주소
                         realEstate.담담자연락처 = values[13];//담당자
-                        realEstate.비고 = values[14];//비고
+                        realEstate.비고 = values[14].Replace(":", "\r\n"); ;//비고
 
                         realEstateList.Add(realEstate);
                     }

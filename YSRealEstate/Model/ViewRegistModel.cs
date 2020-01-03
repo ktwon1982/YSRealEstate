@@ -370,6 +370,9 @@ namespace YSRealEstate.Model
             this.realEstateInfo.전력 = power;
             this.realEstateInfo.주소 = address;
             this.realEstateInfo.담담자연락처 = maintenance;
+
+
+
             this.realEstateInfo.비고 = comment;
            
 

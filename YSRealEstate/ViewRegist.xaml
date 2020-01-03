@@ -265,6 +265,8 @@
                                VerticalAlignment="Top"
                                Width="202"
                               Height="100"
+                             
+                             AcceptsReturn="True"
                              TextWrapping="Wrap" 
                                />
                 </Grid>

@@ -41,3 +41,4 @@ E:\소스\git_project\YSEstate\YSRealEstate\YSRealEstate\obj\Debug\YSRealEstate.
 E:\소스\git_project\YSEstate\YSRealEstate\YSRealEstate\obj\Debug\YSRealEstate.exe
 E:\소스\git_project\YSEstate\YSRealEstate\YSRealEstate\obj\Debug\YSRealEstate.pdb
 E:\소스\git_project\YSEstate\YSRealEstate\YSRealEstate\obj\Debug\YSRealEstate.csprojResolveAssemblyReference.cache
+D:\VisualStudio\프로젝트외\YSRealEstate\YSRealEstate\obj\Debug\YSRealEstate.csprojResolveAssemblyReference.cache
