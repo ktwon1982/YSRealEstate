@@ -97,10 +97,10 @@ namespace YSRealEstate.DTO
             }
         }
 
-        //보증금
+        //임대료
         private string deposit;
 
-        public string 보증금
+        public string 임대료
         {
             get { return deposit; }
             set

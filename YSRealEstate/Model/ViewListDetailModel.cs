@@ -352,12 +352,13 @@ namespace YSRealEstate.Model
             else
             {
                 contractEndSelectedDate = Convert.ToDateTime(details.계약종료일);
-            }            
-
+            }
+            
             spacious = details.평수.ToString();
+            
             floorNumber = details.층수.ToString();
             estateType = details.매물구분;
-            deposit = details.보증금.ToString();
+            deposit = details.임대료.ToString();
             elevator = details.승강기.ToString();
             hoist = details.호이스트.ToString();
             floorHeight = details.층고.ToString();
@@ -659,20 +660,142 @@ namespace YSRealEstate.Model
                     //realEstateFactory.DelRealEstate(i);
 
                     realEstateInfo.번호 = number.ToString();
-                    realEstateInfo.접수일 = selectedDate.ToString();
-                    realEstateInfo.계약체결일 = contractSelectedDate.ToString();
-                    realEstateInfo.계약종료일 = contractEndSelectedDate.ToString();
-                    realEstateInfo.평수 = spacious;
-                    realEstateInfo.층수 = floorNumber;
-                    realEstateInfo.매물구분 = estateType;
-                    realEstateInfo.보증금 = deposit;
-                    realEstateInfo.승강기 = elevator;
-                    realEstateInfo.호이스트 = hoist;
-                    realEstateInfo.층고 = floorHeight;
-                    realEstateInfo.전력 = power;
-                    realEstateInfo.주소 = address;
-                    realEstateInfo.담담자연락처 = maintenance;
-                    realEstateInfo.비고 = comment;
+                    realEstateInfo.접수일 = selectedDate.ToString("yyy-MM-dd"); 
+                    realEstateInfo.계약체결일 = contractSelectedDate.ToString("yyy-MM-dd"); 
+                    realEstateInfo.계약종료일 = contractEndSelectedDate.ToString("yyy-MM-dd");
+
+                    if (spacious != null)
+                    {
+                        if (spacious.Contains(","))
+                        {
+                            realEstateInfo.평수 = spacious.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.평수 = spacious;
+                        }
+                    }
+
+                    if (floorNumber != null)
+                    {
+                        if (floorNumber.Contains(","))
+                        {
+                            realEstateInfo.층수 = floorNumber.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.층수 = floorNumber;
+                        }
+                    }
+
+                    if (estateType != null)
+                    {
+                        if (estateType.Contains(","))
+                        {
+                            realEstateInfo.매물구분 = estateType.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.매물구분 = estateType;
+                        }
+                    }
+
+                    if (deposit != null)
+                    {
+                        if (deposit.Contains(","))
+                        {
+                            realEstateInfo.임대료 = deposit.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.임대료 = deposit;
+                        }
+                    }
+
+                    if (elevator != null)
+                    {
+                        if (elevator.Contains(","))
+                        {
+                            realEstateInfo.승강기 = elevator.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.승강기 = elevator;
+                        }
+                    }
+
+                    if (hoist != null)
+                    {
+                        if (hoist.Contains(","))
+                        {
+                            realEstateInfo.호이스트 = hoist.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.호이스트 = hoist;
+                        }
+                    }
+
+                    if (floorHeight != null)
+                    {
+                        if (floorHeight.Contains(","))
+                        {
+                            realEstateInfo.층고 = floorHeight.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.층고 = floorHeight;
+                        }
+                    }
+
+                    if (power != null)
+                    {
+                        if (power.Contains(","))
+                        {
+                            realEstateInfo.전력 = power.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.전력 = power;
+                        }
+                    }
+
+
+                    if (address != null)
+                    {
+                        if (address.Contains(","))
+                        {
+                            realEstateInfo.주소 = address.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.주소 = address;
+                        }
+                    }
+
+                    if (maintenance != null)
+                    {
+                        if (maintenance.Contains(","))
+                        {
+                            realEstateInfo.담담자연락처 = maintenance.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.담담자연락처 = maintenance;
+                        }
+                    }
+
+                    if (comment != null)
+                    {
+                        if (comment.Contains(","))
+                        {
+                            realEstateInfo.비고 = comment.Replace(",", "&");
+                        }
+                        else
+                        {
+                            realEstateInfo.비고 = comment;
+                        }
+                    }
                 }
             }
 

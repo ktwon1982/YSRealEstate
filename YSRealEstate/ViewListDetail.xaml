@@ -6,9 +6,9 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:YSRealEstate"
         mc:Ignorable="d"
-        Title="ViewListDetail" Height="800" Width="500">
+        Title="ViewListDetail" Height="900" Width="500">
 
-    <Grid>
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="9*"/>
@@ -20,6 +20,7 @@
                         FontWeight="Bold"
                         FontSize="20"
                         HorizontalAlignment="Center"
+                           Foreground="White"
                         Margin="10" />
             </StackPanel>
         </Grid>
@@ -37,8 +38,8 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="5*"/>
@@ -56,6 +57,7 @@
                                FontSize="16"
                                HorizontalAlignment ="Right"
                                VerticalAlignment="Center"
+                               Foreground="White"
                                />
 
                 </Grid>
@@ -67,7 +69,6 @@
                         VerticalAlignment="Center" 
                         Margin="0,0,0,0"                             
                         SelectedDate="{Binding SelectedDate}"  
-                        IsEnabled="{Binding UdateEabled}"
                         />
                     </DockPanel>
                 </Grid>
@@ -78,6 +79,7 @@
                                FontSize="16"
                                HorizontalAlignment ="Right"
                                VerticalAlignment="Center"
+                               Foreground="White"
                                />
 
                 </Grid>
@@ -89,7 +91,6 @@
                         VerticalAlignment="Center" 
                         Margin="0,0,0,0"                             
                         SelectedDate="{Binding ContractSelectedDate}"  
-                        IsEnabled="{Binding UdateEabled}"
                         />
                     </DockPanel>
                 </Grid>
@@ -100,6 +101,7 @@
                                FontSize="16"
                                HorizontalAlignment ="Right"
                                VerticalAlignment="Center"
+                               Foreground="White"
                                />
 
                 </Grid>
@@ -111,7 +113,6 @@
                         VerticalAlignment="Center" 
                         Margin="0,0,0,0"                             
                         SelectedDate="{Binding ContractEndSelectedDate}"  
-                        IsEnabled="{Binding UdateEabled}"
                         />
                     </DockPanel>
                 </Grid>
@@ -121,6 +122,7 @@
                                FontSize="16"
                                HorizontalAlignment ="Right"
                                VerticalAlignment="Center"
+                               Foreground="White"
                                />
                 </Grid>
 
@@ -129,8 +131,8 @@
                               FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
-                              Width="200"
-                             IsEnabled="{Binding UdateEabled}"
+                              Width="200" IsReadOnly="{Binding UpdatebtnEabled}"
+                             
                                />
                 </Grid>
 
@@ -139,7 +141,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -149,7 +151,7 @@
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
-                             IsEnabled="{Binding UdateEabled}"
+                             IsReadOnly="{Binding UpdatebtnEabled}"
                                />
                 </Grid>
 
@@ -158,7 +160,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -168,16 +170,16 @@
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
-                             IsEnabled="{Binding UdateEabled}"
+                            IsReadOnly="{Binding UpdatebtnEabled}"
                                />
                 </Grid>
 
                 <Grid Grid.Row="6" Grid.Column="0">
-                    <TextBlock Text="보증금 : " 
+                    <TextBlock Text="임대료 : " 
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -187,7 +189,7 @@
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
-                             IsEnabled="{Binding UdateEabled}"
+                             IsReadOnly="{Binding UpdatebtnEabled}"
                                />
                 </Grid>
 
@@ -196,7 +198,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -206,7 +208,7 @@
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
-                             IsEnabled="{Binding UdateEabled}"
+                             IsReadOnly="{Binding UpdatebtnEabled}"
                                />
                 </Grid>
 
@@ -216,7 +218,7 @@
                                FontSize="16"
                                HorizontalAlignment ="Right"
                                VerticalAlignment="Center"
-                               IsEnabled="{Binding UdateEabled}"
+                               Foreground="White"
                                />
                 </Grid>
 
@@ -226,7 +228,7 @@
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
-                             IsEnabled="{Binding UdateEabled}"
+                             IsReadOnly="{Binding UpdatebtnEabled}" Foreground="White"
                                />
                 </Grid>
 
@@ -235,7 +237,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -245,7 +247,7 @@
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
-                             IsEnabled="{Binding UdateEabled}"
+                             IsReadOnly="{Binding UpdatebtnEabled}"
                                />
                 </Grid>
 
@@ -254,7 +256,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -264,7 +266,7 @@
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
-                             IsEnabled="{Binding UdateEabled}"
+                             IsReadOnly="{Binding UpdatebtnEabled}"
                                />
                 </Grid>
 
@@ -273,7 +275,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -283,7 +285,10 @@
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
-                             IsEnabled="{Binding UdateEabled}"
+                             Height="40"
+                              AcceptsReturn="True"
+                             TextWrapping="Wrap" 
+                            IsReadOnly="{Binding UpdatebtnEabled}"
                                />
                 </Grid>
 
@@ -292,7 +297,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -302,7 +307,10 @@
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
                               Width="200"
-                             IsEnabled="{Binding UdateEabled}"
+                             Height="40"
+                             IsReadOnly="{Binding UpdatebtnEabled}"
+                              AcceptsReturn="True"
+                             TextWrapping="Wrap" 
                                />
                 </Grid>
 
@@ -311,7 +319,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Top"
+                               VerticalAlignment="Top" Foreground="White"
                                />
                 </Grid>
 
@@ -323,8 +331,7 @@
                                Width="202"
                               Height="100"
                              TextWrapping="Wrap" 
-                             IsManipulationEnabled="true"
-                             IsEnabled="{Binding UdateEabled}"
+                             IsReadOnly="{Binding UpdatebtnEabled}"
                              AcceptsReturn="True"
                                />
                 </Grid>
@@ -334,7 +341,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Top"
+                               VerticalAlignment="Top" Foreground="White"
                                />
                 </Grid >
 
@@ -345,7 +352,7 @@
                         
                                FontWeight="Bold"
                                FontSize="16"
-                               HorizontalAlignment ="Right"
+                               HorizontalAlignment ="Right" Foreground="White"
                                VerticalAlignment="Top"
                         IsEnabled="{Binding UdateEabled}"
                                />
@@ -357,7 +364,7 @@
                 HorizontalAlignment="Left" 
                 Width="100"
                 Command="{Binding AddImageCommand}"
-                IsEnabled="{Binding UdateEabled}"
+                IsEnabled="{Binding UdateEabled}" Margin="5,3,0,3"
                 >이미지추가</Button>
 
                 <Button Grid.Row="14" Grid.Column="1"               
@@ -365,21 +372,21 @@
                 HorizontalAlignment="Left" 
                 Width="100"
               
-                Command="{Binding NextImageCommand}" Margin="105,0,0,4"
+                Command="{Binding NextImageCommand}" Margin="107,0,0,3"
                 >>>다음 이미지</Button>
 
                 <Button Grid.Row="14" Grid.Column="1"               
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Left" 
                 Width="100"
-                Command="{Binding DelImageCommand}" Margin="210,3,0,4"
-                IsEnabled="{Binding UdateEabled}"
+                Command="{Binding DelImageCommand}" Margin="210,3,0,2"
+                IsEnabled="{Binding UdateEabled}" Height="24"
                 >이미지 삭제</Button>
 
                 <Image Grid.Row="15" Grid.Column="1"                                                   
                            HorizontalAlignment="Left" 
                            Height="120" 
-                           Margin="5.2,5,-0.4,-0.4"                       
+                           Margin="5,5,0,0"                       
                            VerticalAlignment="Top" 
                            Width="315"
                            Source="{Binding ImageSource, Mode=TwoWay, 
@@ -398,7 +405,7 @@
                 Width="100"
                 Height="25" 
                 Command="{Binding RealEstateUpdateCommand}"
-                IsEnabled="{Binding  UpdatebtnEabled}"
+                IsEnabled="{Binding  UpdatebtnEabled}" Margin="5,2,0,2"
                 >수정</Button>
 
                 <Button Grid.Row="16" Grid.Column="1"
@@ -406,8 +413,8 @@
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Left" 
                 Width="100"
-                Height="24" 
-                Command="{Binding RealEstateUpdateOKCommand}" Margin="105,2,0,0"
+                Height="25" 
+                Command="{Binding RealEstateUpdateOKCommand}" Margin="106,3,0,2"
                 IsEnabled="{Binding  OKEabled}"
                 >완료</Button>
             </Grid>

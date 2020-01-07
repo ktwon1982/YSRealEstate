@@ -6,9 +6,10 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:YSRealEstate"
         mc:Ignorable="d"
-        Title="ViewRegist" Height="700" Width="500">
+        Title="ViewRegist" Height="800" Width="500"
+        >
 
-    <Grid>
+    <Grid  Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="9*"/>
@@ -19,7 +20,7 @@
                 <TextBlock Text="매물등록"
                         FontWeight="Bold"
                         FontSize="20"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Center" Foreground="White"
                         Margin="10" />
             </StackPanel>
         </Grid>
@@ -35,8 +36,8 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
                     <RowDefinition Height="4*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="5*"/>
@@ -53,7 +54,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
 
                 </Grid>
@@ -74,7 +75,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -92,7 +93,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -110,7 +111,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -124,11 +125,11 @@
                 </Grid>
 
                 <Grid Grid.Row="4" Grid.Column="0">
-                    <TextBlock Text="보증금 : " 
+                    <TextBlock Text="임대료 : " 
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -146,7 +147,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -164,7 +165,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -182,7 +183,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -200,7 +201,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -218,7 +219,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -227,7 +228,9 @@
                                FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
-                              Width="200"
+                              Width="200" Height="40"
+                              AcceptsReturn="True"
+                             TextWrapping="Wrap" 
                                />
                 </Grid>
 
@@ -236,7 +239,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Center"
+                               VerticalAlignment="Center" Foreground="White"
                                />
                 </Grid>
 
@@ -245,7 +248,9 @@
                                FontSize="14"
                                HorizontalAlignment ="Left"
                                VerticalAlignment="Center"
-                              Width="200"
+                              Width="200" Height="40" 
+                              AcceptsReturn="True"
+                             TextWrapping="Wrap" 
                                />
                 </Grid>
 
@@ -254,7 +259,7 @@
                                FontWeight="Bold"
                                FontSize="16"
                                HorizontalAlignment ="Right"
-                               VerticalAlignment="Top"
+                               VerticalAlignment="Top" Foreground="White"
                                />
                 </Grid>
 
@@ -275,7 +280,7 @@
                                Text="이미지 : " 
                                FontWeight="Bold"
                                FontSize="16"
-                               HorizontalAlignment ="Right"
+                               HorizontalAlignment ="Right" Foreground="White"
                                VerticalAlignment="Top"
                                />
                 </Grid >
@@ -287,7 +292,7 @@
                         
                                FontWeight="Bold"
                                FontSize="16"
-                               HorizontalAlignment ="Right"
+                               HorizontalAlignment ="Right" Foreground="White"
                                VerticalAlignment="Top"
                                />
                 </Grid >
@@ -298,7 +303,7 @@
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Left" 
                 Width="100"
-                Command="{Binding AddImageCommand}"
+                Command="{Binding AddImageCommand}" Margin="5,2,0,3"
                 >이미지추가</Button>
 
                 <Button Grid.Row="12" Grid.Column="1"               
@@ -306,14 +311,14 @@
                 HorizontalAlignment="Left" 
                 Width="100"
               
-                Command="{Binding NextImageCommand}" Margin="105,0,0,4"
+                Command="{Binding NextImageCommand}" Margin="107,0,0,2"
                 >>>다음 이미지</Button>
 
                 <Button Grid.Row="12" Grid.Column="1"               
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Left" 
                 Width="100"
-                Command="{Binding DelImageCommand}" Margin="210,3,0,4"
+                Command="{Binding DelImageCommand}" Margin="210,3,0,2" RenderTransformOrigin="0.51,0.783"
                 >이미지 삭제</Button>
 
                 <Image Grid.Row="13" Grid.Column="1"                                                   
@@ -337,8 +342,8 @@
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Left" 
                 Width="100"
-                Height="25" 
-                Command="{Binding RealEstateRegistCommand}"
+                Height="26" 
+                Command="{Binding RealEstateRegistCommand}" Margin="5,2,0,0"
                 >등록</Button>
             </Grid>
         </Grid>

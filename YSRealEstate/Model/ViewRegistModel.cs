@@ -360,22 +360,140 @@ namespace YSRealEstate.Model
             this.realEstateInfo.접수일 = selectedDate.ToString("yyy-MM-dd");
             //this.realEstateInfo.계약체결일 = "";
             //this.realEstateInfo.계약종료일 = "";
-            this.realEstateInfo.평수 = spacious;
-            this.realEstateInfo.층수 = floorNumber;
-            this.realEstateInfo.매물구분 = estateType;
-            this.realEstateInfo.보증금 = deposit;
-            this.realEstateInfo.승강기 = elevator;
-            this.realEstateInfo.호이스트 = hoist;
-            this.realEstateInfo.층고 = floorHeight;
-            this.realEstateInfo.전력 = power;
-            this.realEstateInfo.주소 = address;
-            this.realEstateInfo.담담자연락처 = maintenance;
+
+            if(spacious != null)
+            {
+                if (spacious.Contains(","))
+                {
+                    this.realEstateInfo.평수 = spacious.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.평수 = spacious;
+                }
+            }
+
+            if (floorNumber != null)
+            {
+                if (floorNumber.Contains(","))
+                {
+                    this.realEstateInfo.층수 = floorNumber.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.층수 = floorNumber;
+                }
+            }
+
+            if (estateType != null)
+            {
+                if (estateType.Contains(","))
+                {
+                    this.realEstateInfo.매물구분 = estateType.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.매물구분 = estateType;
+                }
+            }
+
+            if (deposit != null)
+            {
+                if (deposit.Contains(","))
+                {
+                    this.realEstateInfo.임대료 = deposit.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.임대료 = deposit;
+                }
+            }
+
+            if (elevator != null)
+            {
+                if (elevator.Contains(","))
+                {
+                    this.realEstateInfo.승강기 = elevator.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.승강기 = elevator;
+                }
+            }
+
+            if (hoist != null)
+            {
+                if (hoist.Contains(","))
+                {
+                    this.realEstateInfo.호이스트 = hoist.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.호이스트 = hoist;
+                }
+            }
+
+            if (floorHeight != null)
+            {
+                if (floorHeight.Contains(","))
+                {
+                    this.realEstateInfo.층고 = floorHeight.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.층고 = floorHeight;
+                }
+            }
+
+            if (power != null)
+            {
+                if (power.Contains(","))
+                {
+                    this.realEstateInfo.전력 = power.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.전력 = power;
+                }
+            }
 
 
+            if (address != null)
+            {
+                if (address.Contains(","))
+                {
+                    this.realEstateInfo.주소 = address.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.주소 = address;
+                }
+            }
 
-            this.realEstateInfo.비고 = comment;
-           
+            if (maintenance != null)
+            {
+                if (maintenance.Contains(","))
+                {
+                    this.realEstateInfo.담담자연락처 = maintenance.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.담담자연락처 = maintenance;
+                }
+            }
 
+            if (comment != null)
+            {
+                if (comment.Contains(","))
+                {
+                    this.realEstateInfo.비고 = comment.Replace(",", "&");
+                }
+                else
+                {
+                    this.realEstateInfo.비고 = comment;
+                }
+            }
+            
             realEstateFactory.AddRealEstate(realEstateInfo);
 
             realEstateFactory.WriteCSV();

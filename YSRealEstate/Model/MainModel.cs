@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using YSRealEstate.Command;
 using YSRealEstate.DTO;
@@ -111,7 +112,7 @@ namespace YSRealEstate.Model
                 "평수",
                 "층수",
                 "매물구분",
-                "보증금",
+                "임대료",
                 "승강기",
                 "호이스트",
                 "층고",
@@ -146,6 +147,15 @@ namespace YSRealEstate.Model
 
         private void DelCMD(object obj)
         {
+            if(selectedRealEstate == null)
+            {
+                MessageBox.Show("행을 선택해 주세요");
+                return;
+            }
+            MessageBoxResult messageBoxResult = MessageBox.Show("선택하신 정보가 삭제됩니다", "YesOrNo", System.Windows.MessageBoxButton.YesNo);
+
+            if (messageBoxResult == MessageBoxResult.No) { return; }
+
             int i = 0;
 
             string delNum = selectedRealEstate.번호;
@@ -183,6 +193,7 @@ namespace YSRealEstate.Model
         {
             SelectedRealEstate = null;
             foundRealEstate = factory.GetAllProducts();
+            
             OnPropertyChanged("FoundRealEstate");
             
         }
@@ -217,7 +228,7 @@ namespace YSRealEstate.Model
             {
                 foundRealEstate = factory.FindEstateType(SearchInput);
             }
-            else if (selectedItem.Equals("보증금"))
+            else if (selectedItem.Equals("임대료"))
             {
                 foundRealEstate = factory.FindDeposit(SearchInput);
             }
@@ -261,6 +272,12 @@ namespace YSRealEstate.Model
 
         private void GrideviewDoubleClick(object obj)
         {
+            if(SelectedRealEstate == null)
+            {
+                MessageBox.Show("행을 선택 해 주세요.");
+                return;
+            }
+
             ViewListDetail VLD = new ViewListDetail(selectedRealEstate, factory);
             VLD.ShowDialog();
 

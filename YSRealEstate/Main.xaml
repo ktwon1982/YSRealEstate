@@ -6,15 +6,15 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:YSRealEstate"
         mc:Ignorable="d"
-        Title="Mainxaml" Height="500" Width="1200">
+        Title="Mainxaml" Height="500" Width="1200" Background="White">
 
-    <Grid>
+    <Grid Background="Black">
 
         <TextBox Text="{Binding SearchInput, 
                  Mode=TwoWay, 
                  UpdateSourceTrigger=PropertyChanged}"
-                 Height="23"
-                 Margin="242,22,193.6,0"
+                 Height="30"
+                 Margin="242,22,194,0"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
                  Background="#99FFFFFF" />
@@ -26,10 +26,10 @@
                    Text="Search:"
                    VerticalAlignment="Top" FontSize="16" />
 
-        <DataGrid x:Name="DataGrid"
+        <DataGrid x:Name="DataGrid" Background="#FF473939" 
                   ItemsSource="{Binding FoundRealEstate}"
                   SelectedItem="{Binding SelectedRealEstate, Mode=TwoWay}"
-                  Margin="10,60,9.6,10.4" IsReadOnly="True" FontSize="16">
+                  Margin="10,60,9.6,10.4" IsReadOnly="True" FontSize="16" BorderBrush="#FF7AA1C7" RowBackground="#FF322D2D" Foreground="#FF527291" HorizontalGridLinesBrush="Black">
 
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
@@ -52,7 +52,7 @@
                 HorizontalAlignment="Right" 
                 Margin="0,22,100,0" 
                 VerticalAlignment="Top"
-                Height="23"
+                Height="30"
                 Width="75"
                 Command="{Binding RegistCommand}" FontSize="16">
         </Button>
@@ -62,7 +62,7 @@
              HorizontalAlignment="Right" 
              Margin="0,22,10,0" 
             VerticalAlignment="Top" 
-            Height="23"
+            Height="30"
             Width="75" 
             Command="{Binding DelCommand}"    
             FontSize="16"/>

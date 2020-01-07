@@ -55,7 +55,7 @@ namespace YSRealEstate
         public IEnumerable<RealEstateInfoDTO> FindDeposit(string searchString)
         {
             //return products.Where(p => p.Title.Contains(searchString));
-            return realEstateList.Where(p => p.보증금.ToString().Contains(searchString));
+            return realEstateList.Where(p => p.임대료.ToString().Contains(searchString));
         }
 
         public IEnumerable<RealEstateInfoDTO> FindElevator(string searchString)
@@ -163,10 +163,12 @@ namespace YSRealEstate
                     if(i == 0)
                     {
                         var firstline = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", 
-                            "#물건번호", "접수일", "계약체결일", "계약종료일", "평수", "층수", "매물구분", "보증금", "승강기", "호이스트", "층고", "전력", "주소", "담당자", "비고");
+                            "#물건번호", "접수일", "계약체결일", "계약종료일", "평수", "층수", "매물구분", "임대료", "승강기", "호이스트", "층고", "전력", "주소", "담당자", "비고");
                         w.WriteLine(firstline);
                         w.Flush();
                     }
+
+                    string replace = string.Empty;
 
                     var num = i + 1;
                     var receiptDate = realEstateList[i].접수일;
@@ -175,18 +177,34 @@ namespace YSRealEstate
                     var spacious = realEstateList[i].평수;
                     var floorNumber = realEstateList[i].층수;
                     var estateType = realEstateList[i].매물구분;
-                    var deposit = realEstateList[i].보증금;
+                    var deposit = realEstateList[i].임대료;
                     var elevator = realEstateList[i].승강기;
                     var hoist = realEstateList[i].호이스트;
                     var floorHeight = realEstateList[i].층고;
                     var power = realEstateList[i].전력;
-                    var address = realEstateList[i].주소;
-                    var maintenance = realEstateList[i].담담자연락처;
 
-                    string replace = realEstateList[i].비고.Replace("\r\n", ":");
-                    
-                    //var comment = realEstateList[i].비고;
-                    var comment = replace;
+                    var address = string.Empty;
+
+                    if (realEstateList[i].주소 != null)
+                    {
+                        replace = realEstateList[i].주소.Replace("\r\n", ":");
+                        address = replace;
+                    }
+
+                    var maintenance = string.Empty;
+                    if (realEstateList[i].담담자연락처 != null)
+                    {
+                        replace = realEstateList[i].담담자연락처.Replace("\r\n", ":");
+                        maintenance = replace;
+                    }
+
+                    var comment = string.Empty;
+
+                    if (realEstateList[i].비고 != null)
+                    {
+                        replace = realEstateList[i].비고.Replace("\r\n", ":");
+                        comment = replace;
+                    }               
 
                     var line = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", num, receiptDate, contractDate, contractEndDate, spacious, floorNumber, estateType, deposit, elevator, hoist, floorHeight, power, address, maintenance, comment);
                     w.WriteLine(line);
@@ -226,12 +244,22 @@ namespace YSRealEstate
 
                             continue;
                         }
-
-                        values = strLineValue.Split(',');
                         
+                        values = strLineValue.Split(',');
+
                         //DateTime dt = new DateTime(Convert.ToInt16(date[0]), Convert.ToInt16(date[1]), Convert.ToInt16(date[2]));
 
                         //string receiptDate = values[0].ToString("yyy-MM-dd");
+
+                        int i = 0;
+                        foreach(string value in values)
+                        {
+                            if (value.Contains("&"))
+                            {
+                                values[i] = value.Replace("&", ",");
+                            }
+                            i++;
+                        }
 
                         realEstate.번호 = values[0];
                         realEstate.접수일 = values[1]; //접수일
@@ -239,15 +267,16 @@ namespace YSRealEstate
                         realEstate.계약종료일 = values[3]; //접수일
                         realEstate.평수 = values[4];//평수
                         realEstate.층수 = values[5];//층수                        
-                        realEstate.매물구분 = values[6];//매매구분    
-                        realEstate.보증금 = values[7];//보증금
+                        realEstate.매물구분 = values[6];//매매구분  
+
+                        realEstate.임대료 = values[7];//임대료
                         realEstate.승강기 = values[8];//승강기
                         realEstate.호이스트 = values[9]; //호이스트
                         realEstate.층고 = values[10];//층고
                         realEstate.전력 = values[11];//전력
-                        realEstate.주소 = values[12];//주소
-                        realEstate.담담자연락처 = values[13];//담당자
-                        realEstate.비고 = values[14].Replace(":", "\r\n"); ;//비고
+                        realEstate.주소 = values[12].Replace(":", "\r\n"); //주소
+                        realEstate.담담자연락처 = values[13].Replace(":", "\r\n"); //담당자
+                        realEstate.비고 = values[14].Replace(":", "\r\n");//비고
 
                         realEstateList.Add(realEstate);
                     }
@@ -329,10 +358,10 @@ namespace YSRealEstate
             }
         }
 
-        //보증금
+        //임대료
         private int deposit;
 
-        public int 보증금
+        public int 임대료
         {
             get { return deposit; }
             set
