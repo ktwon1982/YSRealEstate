@@ -326,7 +326,8 @@ namespace YSRealEstate.Model
             DelImageCommand = new CommonCommand(DelImageCMD);
 
             RealEstateUpdateCommand = new CommonCommand(RealEstateUpdate);
-            RealEstateUpdateOKCommand = new CommonCommand(RealEstateUpdateOK);
+            //RealEstateUpdateOKCommand = new CommonCommand(RealEstateUpdateOK);
+            RealEstateUpdateOKCommand = new CommonCommand(RealEstateUpdateOKTEST);
 
             realEstateFactory = factory;
 
@@ -364,7 +365,7 @@ namespace YSRealEstate.Model
             floorHeight = details.층고.ToString();
             power = details.전력.ToString();
             address = details.주소;
-            maintenance = details.담담자연락처;
+            maintenance = details.담당자연락처;
             comment = details.비고;
 
             int number = Convert.ToInt16(details.번호);
@@ -646,7 +647,136 @@ namespace YSRealEstate.Model
         }
 
         //RealEstateInfoDTO realEstateInfo = new RealEstateInfoDTO();
+        private void RealEstateUpdateOKTEST(object obj)
+        {
+            int number = Convert.ToInt16(details.번호);
 
+            IEnumerable<RealEstateInfoDTO> getAll = realEstateFactory.GetAllProducts();
+
+            foreach (RealEstateInfoDTO realEstateInfo in getAll)
+            {
+                if (Convert.ToInt16(realEstateInfo.번호) == number)
+                {
+                    //realEstateFactory.DelRealEstate(i);
+
+                    realEstateInfo.번호 = number.ToString();
+                    realEstateInfo.접수일 = selectedDate.ToString();
+                    realEstateInfo.계약체결일 = contractSelectedDate.ToString();
+                    realEstateInfo.계약종료일 = contractEndSelectedDate.ToString();
+
+                    if (spacious != null)
+                    {
+                        realEstateInfo.평수 = spacious;
+                    }
+
+                    if (floorNumber != null)
+                    {
+                        realEstateInfo.층수 = floorNumber;
+                    }
+
+                    if (estateType != null)
+                    {
+                        realEstateInfo.매물구분 = estateType;
+                    }
+
+                    if (deposit != null)
+                    {
+                        realEstateInfo.임대료 = deposit;
+                    }
+
+                    if (elevator != null)
+                    {
+                        realEstateInfo.승강기 = elevator;                    
+                    }
+
+                    if (hoist != null)
+                    {
+                        realEstateInfo.호이스트 = hoist;
+                    }
+
+                    if (floorHeight != null)
+                    {
+                        realEstateInfo.층고 = floorHeight;
+                    }
+
+                    if (power != null)
+                    {
+                        realEstateInfo.전력 = power;
+                    }
+
+
+                    if (address != null)
+                    {
+                        realEstateInfo.주소 = address;
+                    }
+
+                    if (maintenance != null)
+                    {
+                        realEstateInfo.담당자연락처 = maintenance;
+                    }
+
+                    if (comment != null)
+                    {
+                        realEstateInfo.비고 = comment;
+                    }
+                }
+            }
+
+            //realEstateFactory.AddRealEstate(realEstateInfo);
+
+            //realEstateFactory.WriteCSV();
+            realEstateFactory.WriteExcelTest();
+
+            string imagePath = @"./image/" + number;
+
+            if (Directory.Exists(imagePath) == false)
+            {
+                Directory.CreateDirectory(imagePath);
+            }
+
+            int i = 0;
+
+            foreach (var pair in imageNameDictionary)
+            {
+
+            }
+
+            foreach (var pair in imageDictionary)
+            {
+                try
+                {
+                    //string delfilePath = System.AppDomain.CurrentDomain.BaseDirectory + "image\\" + number;
+                    //string filePath = imagePath + @"/image_" + i + ".jpg";
+                    string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "image\\" + number + "\\image_" + pair.Key + ".jpg";
+
+                    FileInfo file = new FileInfo(filePath);
+                    if (file.Exists == true)
+                    {
+                        file.Delete();
+                    }
+
+                    pair.Value.Save(filePath);
+
+                    i++;
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            foreach (string filePath in delList)
+            {
+                FileInfo file = new FileInfo(filePath);
+
+                if (file.Exists == true)
+                {
+                    file.Delete();
+                }
+            }
+
+            OnRequestOK();
+        }
         private void RealEstateUpdateOK(object obj)
         {            
             int number = Convert.ToInt16(details.번호);
@@ -777,11 +907,11 @@ namespace YSRealEstate.Model
                     {
                         if (maintenance.Contains(","))
                         {
-                            realEstateInfo.담담자연락처 = maintenance.Replace(",", "&");
+                            realEstateInfo.담당자연락처 = maintenance.Replace(",", "&");
                         }
                         else
                         {
-                            realEstateInfo.담담자연락처 = maintenance;
+                            realEstateInfo.담당자연락처 = maintenance;
                         }
                     }
 
@@ -802,8 +932,9 @@ namespace YSRealEstate.Model
 
             //realEstateFactory.AddRealEstate(realEstateInfo);
 
-            realEstateFactory.WriteCSV();
-            
+            //realEstateFactory.WriteCSV();
+            realEstateFactory.WriteExcelTest();
+
             string imagePath = @"./image/" + number;
 
             if (Directory.Exists(imagePath) == false)

@@ -9,6 +9,8 @@ using System.Windows;
 using System.Windows.Input;
 using YSRealEstate.Command;
 using YSRealEstate.DTO;
+using System.Data;
+using System.Data.OleDb;
 
 namespace YSRealEstate.Model
 {
@@ -93,7 +95,7 @@ namespace YSRealEstate.Model
         RealEstateFactory factory = new RealEstateFactory();
         //RealEstate realEstate = new RealEstate();
         RealEstateInfoDTO realEstateInfoDTO;
-
+        
         public MainModel()
         {
             realEstateInfoDTO = new RealEstateInfoDTO();
@@ -103,7 +105,13 @@ namespace YSRealEstate.Model
 
             RegistCommand = new CommonCommand(RegistCMD);
             DelCommand = new CommonCommand(DelCMD);
+            
+            //컴포넌트 초기화
+            InitComponents();
+        }
 
+        private void InitComponents()
+        {
             ComboItems = new ObservableCollection<string>()
             {
                 "접수일",
@@ -120,13 +128,18 @@ namespace YSRealEstate.Model
                 "주소",
                 "담당자",
                 "비고"
-            };
+             };
+
+            factory.ReadExcel();
 
             selectedItem = "비고";
             OnPropertyChanged("SelectedItem");
+            
+            searchInput = "";
+            base.OnPropertyChanged("SearchInput");
+            OnSearchInputChanged();
+        } 
 
-            OnLoadData();
-        }
 
         private void RegistCMD(object obj)
         {
@@ -135,8 +148,8 @@ namespace YSRealEstate.Model
             if (VR.DialogResult == true)
             {
                 //CSV 
-                factory.ReadCSV();
-
+                //factory.ReadExcel();
+                
                 OnLoadData();
 
                 searchInput = "";
@@ -157,13 +170,18 @@ namespace YSRealEstate.Model
             if (messageBoxResult == MessageBoxResult.No) { return; }
 
             int i = 0;
-
+            
             string delNum = selectedRealEstate.번호;
 
             //foundRealEstate.ElementAt(4);
 
             foreach (var list in foundRealEstate)
-            {                
+            {
+                if (list.임대료.Contains(","))
+                {
+                    list.임대료 = list.임대료.Replace(",", "&");
+                }
+
                 string selectList = list.번호;
 
                 if(delNum.Equals(selectList))
@@ -175,7 +193,10 @@ namespace YSRealEstate.Model
             }
 
             //CSV 
-            factory.WriteCSV();
+            //factory.WriteCSV();
+            factory.WriteExcelTest();
+
+            //factory.InitLoadReadCSV();
 
             OnLoadData();
 
@@ -185,7 +206,10 @@ namespace YSRealEstate.Model
 
             //폴더 삭제
             DirectoryInfo di = new DirectoryInfo("./image/"+ delNum);
-            di.Delete(true);
+            if(di.Exists == true)
+            {
+                di.Delete(true);
+            }            
 
         }
 
@@ -284,7 +308,8 @@ namespace YSRealEstate.Model
             if (VLD.DialogResult == true)
             {
                 //CSV 
-                factory.ReadCSV();
+                //factory.ReadCSV();
+                //factory.ReadExcel();
 
                 OnLoadData();
 

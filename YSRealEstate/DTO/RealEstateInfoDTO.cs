@@ -37,29 +37,7 @@ namespace YSRealEstate.DTO
             }
         }
 
-        //계약체결일
-        private string contractDate;
-
-        public string 계약체결일
-        {
-            get { return contractDate; }
-            set
-            {
-                contractDate = value;
-            }
-        }
-
-        //계약종료일
-        private string contractEndDate;
-
-        public string 계약종료일
-        {
-            get { return contractEndDate; }
-            set
-            {
-                contractEndDate = value;
-            }
-        }
+        
 
         //사이즈
         private string spacious;
@@ -172,7 +150,7 @@ namespace YSRealEstate.DTO
         //담당자 연락처
         private string guestTel;
 
-        public string 담담자연락처
+        public string 담당자연락처
         {
             get { return guestTel; }
             set
@@ -191,6 +169,29 @@ namespace YSRealEstate.DTO
             {
                 comment = value;
             }
-        }        
+        }
+        //계약체결일
+        private string contractDate;
+
+        public string 계약체결일
+        {
+            get { return contractDate; }
+            set
+            {
+                contractDate = value;
+            }
+        }
+
+        //계약종료일
+        private string contractEndDate;
+
+        public string 계약종료일
+        {
+            get { return contractEndDate; }
+            set
+            {
+                contractEndDate = value;
+            }
+        }
     }
 }

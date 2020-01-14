@@ -212,8 +212,9 @@ namespace YSRealEstate.Model
             NextImageCommand = new CommonCommand(NextImageCMD);
             DelImageCommand = new CommonCommand(DelImageCMD);
 
-            RealEstateRegistCommand = new CommonCommand(RealEstateRegist);
-                     
+            //RealEstateRegistCommand = new CommonCommand(RealEstateRegist);
+            RealEstateRegistCommand = new CommonCommand(RealEstateRegistTest);
+
 
             //날짜 선택 기본은 오늘날짜
             today = DateTime.Now;
@@ -353,6 +354,143 @@ namespace YSRealEstate.Model
 
         RealEstateFactory realEstateFactory;
 
+        private void RealEstateRegistTest(object obj)
+        {
+            int number = realEstateFactory.GetNum() + 1;
+            this.realEstateInfo.번호 = number.ToString();
+            //this.realEstateInfo.접수일 = selectedDate.ToString("yyy-MM-dd");
+            this.realEstateInfo.접수일 = selectedDate.ToString();
+
+            if (spacious != null)
+            {
+                this.realEstateInfo.평수 = spacious;
+            }
+            else
+            {
+                this.realEstateInfo.평수 = "-";
+            }
+
+            if (floorNumber != null)
+            {        
+                this.realEstateInfo.층수 = floorNumber;
+            }
+            else
+            {
+                this.realEstateInfo.층수 = "-";
+            }
+
+            if (estateType != null)
+            {                
+                this.realEstateInfo.매물구분 = estateType;
+            }
+            else
+            {
+                this.realEstateInfo.매물구분 = "-";
+            }
+
+            if (deposit != null)
+            {
+                this.realEstateInfo.임대료 = deposit;
+            }
+            else
+            {
+                this.realEstateInfo.임대료 = "-";
+            }
+
+            if (elevator != null)
+            {
+                this.realEstateInfo.승강기 = elevator;
+            }
+            else
+            {
+                this.realEstateInfo.승강기 = "-";
+            }
+
+            if (hoist != null)
+            {                
+                this.realEstateInfo.호이스트 = hoist;
+            }
+            else
+            {
+                this.realEstateInfo.호이스트 = "-";
+            }
+
+            if (floorHeight != null)
+            {               
+                this.realEstateInfo.층고 = floorHeight;
+            }
+            else
+            {
+                this.realEstateInfo.층고 = "-";
+            }
+
+            if (power != null)
+            {                
+                this.realEstateInfo.전력 = power;
+            }
+            else
+            {
+                this.realEstateInfo.전력 = "-";
+            }
+
+            if (address != null)
+            {               
+                this.realEstateInfo.주소 = address;
+            }
+            else
+            {
+                this.realEstateInfo.주소 = "-";
+            }
+
+            if (maintenance != null)
+            {
+                this.realEstateInfo.담당자연락처 = maintenance;
+            }
+            else
+            {
+                this.realEstateInfo.담당자연락처 = "-";
+            }
+
+            if (comment != null)
+            {               
+                this.realEstateInfo.비고 = comment;
+            }
+            else
+            {
+                this.realEstateInfo.비고 = "-";
+            }
+
+
+            //realEstateFactory.ClearRealEstate();
+            //realEstateFactory.ReadCSV();
+            realEstateFactory.AddRealEstate(realEstateInfo);
+            //데이터 셋에 저장
+
+
+            realEstateFactory.WriteExcelTest();
+            //realEstateFactory.WriteCSV();
+
+
+            string imagePath = @"./image/" + number;
+
+            if (Directory.Exists(imagePath) == false)
+            {
+                Directory.CreateDirectory(imagePath);
+            }
+            int i = 0;
+
+            foreach (var pair in imageDictionary)
+            {
+
+                //imageDictionary[pair.Key].Save(imagePath + @"/image_" + i + ".jpg");
+
+                pair.Value.Save(imagePath + @"/image_" + i + ".jpg");
+
+                i++;
+            }
+
+            OnRequestOK();
+        }
         private void RealEstateRegist(object obj)
         {
             int number = realEstateFactory.GetNum() + 1;
@@ -474,11 +612,11 @@ namespace YSRealEstate.Model
             {
                 if (maintenance.Contains(","))
                 {
-                    this.realEstateInfo.담담자연락처 = maintenance.Replace(",", "&");
+                    this.realEstateInfo.담당자연락처 = maintenance.Replace(",", "&");
                 }
                 else
                 {
-                    this.realEstateInfo.담담자연락처 = maintenance;
+                    this.realEstateInfo.담당자연락처 = maintenance;
                 }
             }
 
@@ -493,10 +631,14 @@ namespace YSRealEstate.Model
                     this.realEstateInfo.비고 = comment;
                 }
             }
-            
-            realEstateFactory.AddRealEstate(realEstateInfo);
 
+
+            realEstateFactory.ClearRealEstate();
+            realEstateFactory.ReadCSV();
+            realEstateFactory.AddRealEstate(realEstateInfo);
+            
             realEstateFactory.WriteCSV();
+            
 
             string imagePath = @"./image/" + number;
 
