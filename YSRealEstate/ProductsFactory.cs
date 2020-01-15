@@ -521,8 +521,8 @@ namespace YSRealEstate
                             realEstate.층고 = values[8].ToString();//층고
                             realEstate.전력 = values[9].ToString();//전력
                             realEstate.주소 = values[10].ToString(); //주소
-                            realEstate.비고 = values[11].ToString();//비고                    
-                            realEstate.담당자연락처 = values[12].ToString(); //담당자                            
+                            realEstate.담당자연락처 = values[11].ToString();//담당자                   
+                            realEstate.비고 = values[12].ToString(); //비고                            
                             realEstate.계약체결일 = values[13].ToString(); //계약체결일
                             realEstate.계약종료일 = values[14].ToString(); //계약종료일 
                             
